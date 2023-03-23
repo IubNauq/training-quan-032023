@@ -1,4 +1,4 @@
-Kiểm tra database:
+**Kiểm tra database:**
 
 pgcli -h localhost -u ims -d d1
 
