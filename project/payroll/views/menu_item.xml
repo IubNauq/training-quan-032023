@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- <menuitem
+        id="payroll_wage_history_menu"
+        name="Payroll Wage History"
+        action="action_payroll_wage_history_view"
+        sequence="10" /> -->
+
+
+    <menuitem
+        id="reporting_menu"
+        name="Reporting"
+        parent="hr.menu_hr_root"
+        sequence="10" />
+    <menuitem
+        id="payroll_wage_history_menu"
+        name="Wage History"
+        parent="reporting_menu"
+        action="action_payroll_wage_history_view"
+        sequence="10" />
+
+    <menuitem
+        id="wage_summary"
+        name="Wage Summary"
+        action="wizard_payroll_view_action"
+        parent="reporting_menu"
+        sequence="10" />
+
+</odoo>

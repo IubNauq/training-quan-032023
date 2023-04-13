@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 
+    <record id="paperformat_payroll" model="report.paperformat">
+        <field name="name">Payroll Wage</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">300</field>
+        <field name="page_width">200</field>
+        <field name="orientation">Landscape</field>
+
+        <field name="margin_top">1</field>
+        <field name="margin_bottom">1</field>
+        <field name="margin_left">1</field>
+        <field name="margin_right">1</field>
+    </record> -->
+
+    <record id="action_report_payroll_pdf" model="ir.actions.report">
+        <field name="name">Report Payroll PDF</field>
+        <field name="model">payroll.wage.history</field>
+        <field name="report_type">qweb-pdf</field>
+
+        <field name="report_name">payroll.report_payroll_wage_history</field>
+        <field name="report_file">payroll.report_payroll_wage_history</field>
+
+        <field name="print_report_name">'%s' % object.employee_id.name</field>
+        <!-- Why need this ??? -->
+        <!-- <field name="binding_model_id" ref="model_payroll_wage_history" /> -->
+        <!-- <field name="binding_type">report</field> -->
+        <!-- <field name="paperformat_id" ref="paperformat_payroll" /> -->
+    </record>
+
+    <record id="payroll_xlsx" model="ir.actions.report">
+        <field name="name">Report Payroll XLSX</field>
+        <field name="model">payroll.wage.history</field>
+        <field name="report_type">xlsx</field>
+
+        <field name="report_name">payroll.payroll_xlsx</field>
+        <field name="report_file">res_partner</field>
+        <!-- <field name="binding_model_id" ref="model_payroll_wage_history" /> -->
+
+    </record>
+
+    <!-- <record id="wizard_xlsx" model="ir.actions.report">
+        <field name="name">Report Wizard XLSX</field>
+        <field name="model">wage.summary.wizard</field>
+        <field name="report_type">xlsx</field>
+
+        <field name="report_name">wizards.wizard_xlsx</field>
+        <field name="report_file">res_partner</field>
+        <field name="binding_model_id" ref="model_wage_summary_wizard" />
+
+    </record> -->
+</odoo>
