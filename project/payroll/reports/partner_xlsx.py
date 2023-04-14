@@ -2,23 +2,11 @@ from odoo import models
 from datetime import datetime, timedelta
 
 
-# class PartnerXlsxWizard(models.AbstractModel):
-#     _name = 'report.wizards.wizard_xlsx'
-#     _inherit = 'report.report_xlsx.abstract'
-
-#     def generate_xlsx_report(self, workbook, data, partners):
-#         sheet = workbook.add_worksheet("Report")
-
-#         sheet.write('A1', "Hello")
-
-
 class PartnerXlsx(models.AbstractModel):
     _name = 'report.payroll.payroll_xlsx'
     _inherit = 'report.report_xlsx.abstract'
 
     def generate_xlsx_report(self, workbook, data, partners):
-        print("PPPPPPPPPPPPPP", partners)
-
         sheet = workbook.add_worksheet("Report")
 
         # STYLE

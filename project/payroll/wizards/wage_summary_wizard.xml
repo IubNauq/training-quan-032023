@@ -7,7 +7,6 @@
         <field name="arch" type="xml">
             <form string="Wage Summary">
                 <sheet>
-                    <h1>Hello</h1>
                     <field name="employee_ids">
                         <tree>
                             <field name="name" />

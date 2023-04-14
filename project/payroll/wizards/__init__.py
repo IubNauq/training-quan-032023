@@ -1,1 +1,1 @@
-from . import wizard_payroll
+from . import wage_summary_wizard

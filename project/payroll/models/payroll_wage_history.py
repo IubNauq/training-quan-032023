@@ -90,21 +90,22 @@ class PayrollWageHistory(models.Model):
     @api.model_create_multi
     def create(self, values):
         wage_history_env = self.env["payroll.wage.history"]
-        contract_id = wage_history_env.search(
-            [('contract_id', '=', values[0]['contract_id'])],
-            order='id desc', limit=1)
-        if contract_id:
-            values[0]['index'] = contract_id.index+1
-        else:
-            values[0]['index'] = 0
-        values[0]['name'] = str(values[0]['contract_id']) + "-" +\
-            str(values[0]['index'])+"-"+str(values[0]['effective_date'])[:4]
 
-        return super(PayrollWageHistory, self).create(values[0])
+        for value in values:
+            contract_id = wage_history_env.search(
+                [('contract_id', '=', value['contract_id'])],
+                order='id desc', limit=1)
+            if contract_id:
+                value['index'] = contract_id.index+1
+            else:
+                value['index'] = 0
+            value['name'] = str(value['contract_id']) + "-" +\
+                str(value['index'])+"-"+str(value['effective_date'])[:4]
+
+        return super(PayrollWageHistory, self).create(values)
 
     def search(self, args, offset=0, limit=None, order=None, count=False):
         if self.env.context.get("highest_raise_in_12_month"):
-            record_ids = []
             self.env.cr.execute("""
             SELECT * FROM payroll_wage_history
             WHERE difference = (
@@ -116,10 +117,10 @@ class PayrollWageHistory(models.Model):
 
             results = self.env.cr.fetchall()
             record_ids = [result[0] for result in results]
-            return self.browse(record_ids)
+            args.append(('id', 'in', record_ids))
+            # return self.browse(record_ids)
 
         elif self.env.context.get("no_raise_in_12_month"):
-            record_ids = []
             self.env.cr.execute("""
             SELECT * FROM payroll_wage_history t1
             WHERE effective_date<%s
@@ -132,7 +133,8 @@ class PayrollWageHistory(models.Model):
 
             results = self.env.cr.fetchall()
             record_ids = [result[0] for result in results]
-            return self.browse(record_ids)
+            args.append(('id', 'in', record_ids))
+            # return self.browse(record_ids)
 
         return super(PayrollWageHistory, self).search(args, offset=offset,
                                                       limit=limit, order=order,

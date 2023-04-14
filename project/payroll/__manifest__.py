@@ -24,24 +24,23 @@
         # =============== DATA ===================
         'data/payroll_wage_history_data.xml',
 
-
         # =============== SECURITY ===============
         'security/ir.model.access.csv',
         'security/payroll_wage_history_security.xml',
 
         # =============== VIEWS ==================
-        'views/payroll_view.xml',
-        'views/menu_item.xml',
-        'views/hr_employee.xml',
+        'views/payroll_wage_history_views.xml',
+        'views/hr_employee_views.xml',
 
         # =============== WIZARDS ================
-        'wizards/wizard_payroll.xml',
+        'wizards/wage_summary_wizard.xml',
 
         # =============== MENU ===================
-        # 'menu/menu.xml',
+        'menu/menu.xml',
+
         # =============== REPORT =================
         'reports/report_payroll.xml',
-        'reports/report.xml'
+        'reports/report_employee_payroll.xml'
 
 
     ],

@@ -31,20 +31,20 @@
         <field name="arch" type="xml">
             <form string="Information" duplicate="false">
                 <sheet>
-                    <h1>Hello</h1>
-
+                    <h1>
+                        <field name="employee_id" placeholder="Your Full Name" />
+                    </h1>
                     <group colspan="2">
                         <group string="Basic Information" col="2">
                             <field name="index" />
                             <field name="name" />
-                            <field name="employee_id" placeholder="Your Full Name" />
                             <field name="contract_id" />
                             <field name="department_id" />
                             <field name="job_id" />
+                            <field name="create_uid" />
                         </group>
 
                         <group string="Wage" col="2">
-                            <field name="create_uid" />
                             <field name="effective_date" />
                             <field name="currency_id" />
                             <field name="previous_wage" />
