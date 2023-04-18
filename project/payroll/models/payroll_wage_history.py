@@ -122,7 +122,7 @@ class PayrollWageHistory(models.Model):
 
         elif self.env.context.get("no_raise_in_12_month"):
             self.env.cr.execute("""
-            SELECT * FROM payroll_wage_history t1
+            SELECT * FROM payroll_wage_history
             WHERE effective_date<%s
             AND id IN
             (

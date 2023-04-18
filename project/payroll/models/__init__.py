@@ -1,1 +1,3 @@
-from . import hr_contract, hr_employee, payroll_wage_history
+from . import hr_contract
+from . import hr_employee
+from . import payroll_wage_history

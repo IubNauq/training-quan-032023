@@ -5,7 +5,8 @@ class WageSummaryWizard(models.TransientModel):
     _name = "wage.summary.wizard"
     _description = "Wage Summary Wizard"
 
-    employee_ids = fields.Many2many(comodel_name="hr.employee")
+    payroll_ids = fields.Many2many(
+        comodel_name="payroll.wage.history")
 
     @api.model
     def default_get(self, fields_list):
@@ -21,9 +22,13 @@ class WageSummaryWizard(models.TransientModel):
         #                        for r in payrolls]
 
         self.env.cr.execute("""
-        SELECT DISTINCT employee_id FROM payroll_wage_history
+        SELECT id FROM payroll_wage_history
+        WHERE id IN
+        (
+            SELECT max(id) FROM payroll_wage_history
+            GROUP BY employee_id
+        )
         """)
         payrolls = self.env.cr.fetchall()
-        res['employee_ids'] = [(4, r[0]) for r in payrolls]
-
+        res['payroll_ids'] = [(4, r[0]) for r in payrolls]
         return res

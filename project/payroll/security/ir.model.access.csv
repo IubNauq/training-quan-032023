@@ -1,5 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_payroll_wage_history,access_payroll_wage_history,model_payroll_wage_history,base.group_user,1,0,1,0
-access_hr_employee,access_hr_employee,model_hr_employee,base.group_user,1,1,1,1
-access_hr_contract,access_hr_contract,model_hr_contract,base.group_user,1,1,1,1
-access_wage_summary_wizard,access_wage_summary_wizard,model_wage_summary_wizard,base.group_user,1,1,1,1
+access_wage_summary_wizard,access_wage_summary_wizard,model_wage_summary_wizard,hr.group_hr_manager,1,1,1,1
