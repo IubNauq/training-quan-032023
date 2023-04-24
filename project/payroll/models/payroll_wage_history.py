@@ -67,7 +67,7 @@ class PayrollWageHistory(models.Model):
     effective_date = fields.Date(
         string="Effective Date")
 
-    # Calculate Difference Wage
+    # Calculate Difference
     @api.depends("previous_wage", "current_wage")
     def _compute_difference(self):
         for r in self:
