@@ -10,7 +10,7 @@ class HrContract(models.Model):
             payroll = contract.wage
             effective_date = contract.date_start
             contract_id = contract.id
-            employee_id = contract.employee_id
+            # employee_id = contract.employee_id
 
             if 'hr_responsible_id' in vals:
                 hr_responsible = vals['hr_responsible_id']
@@ -36,9 +36,9 @@ class HrContract(models.Model):
             # wage_history_rec_count = self.env[
             #     "payroll.wage.history"].search_count(
             #     [('employee_id', '=', contract.employee_id.id)])
-            new_record_ = {
-                'current_wage': payroll
-            }
-            self.env['hr.employee'].browse(employee_id.id).write(new_record_)
+            # new_record_ = {
+            #     'current_wage': payroll
+            # }
+            # self.env['hr.employee'].browse(employee_id.id).write(new_record_)
 
         return super(HrContract, self).write(vals)

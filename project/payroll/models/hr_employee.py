@@ -4,7 +4,6 @@ from odoo import fields, models, api
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
 
-    # === USE COMPUTE ===
     wage_history_rec_count = fields.Integer(
         string="Wage History Record(s)",
         store=True,
@@ -14,28 +13,6 @@ class HrEmployee(models.Model):
     payroll_ids = fields.One2many(
         comodel_name="payroll.wage.history",
         inverse_name="employee_id")
-
-    currency_id = fields.Many2one(
-        comodel_name='res.currency',
-        string='Currency',
-        readonly=True)
-
-    current_wage = fields.Monetary(
-        string='Current Wage',
-        currency_field='currency_id',
-        readonly=True)
-
-    # previous_wage = fields.Monetary(
-    #     string='Previous Wage',
-    #     currency_field='currency_id')
-
-    # effective_date = fields.Date(
-    #     string="Effective Date")
-
-    # percentage = fields.Float(
-    #     string="Percentage (%)",
-    #     digits=(4, 2),
-    #     readonly=True)
 
     @api.depends('payroll_ids')
     def _compute_wage_history_rec_count(self):

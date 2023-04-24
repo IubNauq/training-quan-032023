@@ -6,6 +6,11 @@
         <field name="arch" type="xml">
             <form string="Wage Summary">
                 <sheet>
+                    <group string="Filters">
+                        <field name="department_id" />
+                        <field name="job_id" />
+                    </group>
+
                     <field name="payroll_ids">
                         <tree>
                             <field name="employee_id" />
@@ -19,40 +24,22 @@
                 </sheet>
 
                 <footer>
-                    <!-- <button string="Print" name="generate_xlsx_report" type="object"
-                    class="btn-primary"></button> -->
-                    <button string="Cancel" class="btn-primary" special="cancel" />
+                    <button string="Select" class="btn-info" type="object" name="action_select" />
+                    <button string="Print" class="btn-primary" type="object"
+                        name="action_print_xlsx" />
+                    <button string="Cancel" class="btn-default" special="cancel" />
                 </footer>
             </form>
         </field>
     </record>
 
-    <!-- <record id="wizard_payroll_view_tree" model="ir.ui.view">
-        <field name="name">wizard.payroll.view.tree</field>
-        <field name="model">wage.summary.wizard</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="employee_id" />
-            </tree>
-        </field>
-    </record> -->
 
     <record id="wizard_payroll_view_action" model="ir.actions.act_window">
         <field name="name">Wage Summary</field>
         <field name="res_model">wage.summary.wizard</field>
         <field name="view_mode">form</field>
-        <!-- <field name="binding_model_id" ref="model_payroll_wage_history" /> -->
-        <!-- <field name="target">new</field>
-        <field name="view_id" ref="wizard_payroll_view_form" /> -->
+        <field name="binding_model_id" ref="model_payroll_wage_history" />
+        <field name="target">new</field>
+        <!-- <field name="view_id" ref="wizard_payroll_view_form" /> -->
     </record>
-
-
-    <!-- <record id="wizardxlsx" model="ir.actions.report">
-        <field name="name">Report Wizard XLSX</field>
-        <field name="model">report.wizards.wizard_xlsx</field>
-        <field name="report_type">xlsx</field>
-
-        <field name="report_name">wizards.wizard_xlsx</field>
-        <field name="report_file">res_partner</field>
-    </record> -->
 </odoo>

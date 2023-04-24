@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <record id="payroll_wage_history_tree_view" model="ir.ui.view">
         <field name="name">payroll.wage.history.tree.view</field>
         <field name="model">payroll.wage.history</field>
@@ -36,7 +35,6 @@
                     </h1>
                     <group colspan="2">
                         <group string="Basic Information" col="2">
-                            <field name="index" />
                             <field name="name" />
                             <field name="contract_id" />
                             <field name="department_id" />
@@ -70,18 +68,16 @@
                 <field name="job_id" />
                 <field name="create_uid" />
                 <field name="effective_date" />
-            </search>
 
-            <group string="Filters">
-                <filter name="highest_raise" string="Highest Raise in 12 Month"
-                    context="{'highest_raise_in_12_month':True}" />
-                <filter name="no_raise" string="No Raise in 12 month"
-                    context="{'no_raise_in_12_month': True}" />
-                <filter name="my_responsibility" string="My Responsibility"
-                    domain="[('create_uid', '=', uid)]" />
-            </group>
+                <group string="Filters">
+                    <filter name="highest_raise" string="Highest Raise in 12 Month"
+                        context="{'highest_raise_in_12_month':True}" />
+                    <filter name="no_raise" string="No Raise in 12 month"
+                        context="{'no_raise_in_12_month': True}" />
+                    <filter name="my_responsibility" string="My Responsibility"
+                        domain="[('create_uid', '=', uid)]" />
+                </group>
 
-            <search>
                 <group string="Group By">
                     <filter name="employee_group" string="Employee"
                         context="{'group_by': 'employee_id'}" />
@@ -99,20 +95,6 @@
             </search>
         </field>
     </record>
-    <!-- 
-    <record id="inherit_view_id_inherit_payroll_wage_history" model="ir.ui.view">
-        <field name="name">payroll.wage.history.view.form.inherit</field>
-        <field name="model">payroll.wage.history</field>
-        <field name="inherit_id" ref="payroll.payroll_wage_history_tree_view" />
-        <field name="arch" type="xml">
-            <xpath expr="//tree" position="inside">
-                <attribute name="create">false</attribute>
-
-            </xpath>
-
-        </field>
-    </record> -->
-
 
     <record id="action_payroll_wage_history_view" model="ir.actions.act_window">
         <field name="name">Payroll Wage History</field>
@@ -120,5 +102,4 @@
         <field name="res_model">payroll.wage.history</field>
         <field name="view_mode">tree,form</field>
     </record>
-
 </odoo>

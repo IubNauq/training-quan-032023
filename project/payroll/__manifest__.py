@@ -15,7 +15,7 @@
 
 
         # Native Odoo
-        "base", "hr"
+        "base", "hr_contract"
 
 
         # Customize Module

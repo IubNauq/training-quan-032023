@@ -30,8 +30,7 @@
     <record model="ir.rule" id="payroll_wage_history_rule_manager">
         <field name="name">Payroll Wage History Rule Manager</field>
         <field name="model_id" ref="model_payroll_wage_history" />
-        <field name="groups"
-            eval="[(4, ref('hr.group_hr_manager'))]" />
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]" />
         <field name="domain_force">[(1,'=',1)]</field>
     </record>
 </odoo>

@@ -1,8 +1,6 @@
 from odoo import fields, models, api
 from datetime import datetime, timedelta
 
-# last_year = datetime.today()-timedelta(days=365)
-
 
 class PayrollWageHistory(models.Model):
     _name = "payroll.wage.history"
@@ -41,9 +39,6 @@ class PayrollWageHistory(models.Model):
         related='contract_id.job_id',
         store=True)
 
-    # create_uid = fields.Many2one(comodel_name="res.users",
-    #                              string="Responsible", index=True)
-
     currency_id = fields.Many2one(
         comodel_name='res.currency',
         string='Currency')
@@ -72,11 +67,6 @@ class PayrollWageHistory(models.Model):
     effective_date = fields.Date(
         string="Effective Date")
 
-    index = fields.Integer(
-        string="No.",
-        default=0,
-        readonly=True)
-
     @api.depends("previous_wage", "current_wage")
     def _compute_difference(self):
         for r in self:
@@ -92,15 +82,11 @@ class PayrollWageHistory(models.Model):
         wage_history_env = self.env["payroll.wage.history"]
 
         for value in values:
-            contract_id = wage_history_env.search(
-                [('contract_id', '=', value['contract_id'])],
-                order='id desc', limit=1)
-            if contract_id:
-                value['index'] = contract_id.index+1
-            else:
-                value['index'] = 0
+            count = wage_history_env.search_count(
+                [('contract_id', '=', value['contract_id'])])
+
             value['name'] = str(value['contract_id']) + "-" +\
-                str(value['index'])+"-"+str(value['effective_date'])[:4]
+                str(count)+"-"+str(value['effective_date'])[:4]
 
         return super(PayrollWageHistory, self).create(values)
 
