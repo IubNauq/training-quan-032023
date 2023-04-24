@@ -88,3 +88,6 @@ config/server.conf
 runodoo
 .gitignore
 odoo/requirements.txt
+addons
+SummartPayrollReport.xlsx
+SummaryPayrollReport.xlsx
