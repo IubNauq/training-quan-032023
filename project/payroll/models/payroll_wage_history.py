@@ -67,7 +67,7 @@ class PayrollWageHistory(models.Model):
     effective_date = fields.Date(
         string="Effective Date")
 
-    # Calculate Difference
+    # Calculate Difference, Percentage
     @api.depends("previous_wage", "current_wage")
     def _compute_difference(self):
         for r in self:
@@ -78,6 +78,7 @@ class PayrollWageHistory(models.Model):
                 r.percentage = 100.0 * \
                     (r.current_wage-r.previous_wage)/r.previous_wage
 
+    # Override create
     @api.model_create_multi
     def create(self, values):
         wage_history_env = self.env["payroll.wage.history"]
@@ -91,6 +92,7 @@ class PayrollWageHistory(models.Model):
 
         return super(PayrollWageHistory, self).create(values)
 
+    # Override search
     def search(self, args, offset=0, limit=None, order=None, count=False):
         if self.env.context.get("highest_raise_in_12_month"):
             self.env.cr.execute("""
