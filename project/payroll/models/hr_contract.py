@@ -26,7 +26,7 @@ class HrContract(models.Model):
                           'create_uid': hr_responsible,
                           'previous_wage': contract.wage,
                           'current_wage': payroll,
-                          'currency_id': 2,
+                          'currency_id': self.env.ref('base.USD').id,
                           'effective_date': effective_date}
 
             self.env['payroll.wage.history'].create(new_record)

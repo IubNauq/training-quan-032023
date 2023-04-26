@@ -1,5 +1,6 @@
 from odoo import models
 from datetime import datetime, timedelta
+import calendar
 
 
 class PartnerXlsx(models.AbstractModel):
@@ -60,34 +61,34 @@ class PartnerXlsx(models.AbstractModel):
 
         # SUBTITLE
         FIRST_DAY = '01/'
-        LAST_DAY = '31/'
-        subtitle = [
-            ('B2', 'Từ ngày'),
-            ('C2', f'{FIRST_DAY}{current_month}/{current_year}'),
-            ('D2', 'Đến ngày'),
-            ('E2', f'{LAST_DAY}{current_month}/{current_year}'),
-            ('A4', 'STT\nNo.')
-        ]
-        for coord, value in subtitle:
+        LAST_DAY = str(calendar.monthrange(current_year, current_month)[1])+'/'
+        subtitle = {
+            'B2': ('Từ ngày'),
+            'C2': (f'{FIRST_DAY}{current_month}/{current_year}'),
+            'D2': ('Đến ngày'),
+            'E2': (f'{LAST_DAY}{current_month}/{current_year}'),
+            'A4': ('STT\nNo.')
+        }
+        for coord, (value) in subtitle.items():
             sheet.write(coord, value, font)
 
         # COLUMN TITLE
-        col_title = [
-            ('A4', 'STT\nNo.', bold_normal_bg),
-            ('B4', 'NHÂN VIÊN\nEMPLOYEE NAME', bold_normal_bg),
-            ('C4', 'MỨC LƯƠNG HIỆN TẠI\nCURRENT WAGE', bold_normal_bg),
-            ('D4', 'MỨC LƯƠNG TRƯỚC ĐÓ\nPREVIOUS WAGE', bold_normal_bg),
-            ('E4', 'MỨC TĂNG(%)\nRAISE(%)', bold_normal_bg),
-            ('F4', 'ÁP DỤNG TỪ THÁNG\nEFFECTIVE MONTHS', bold_normal_bg)
-        ]
-        for coord, value, style in col_title:
+        col_title = {
+            'A4': ('STT\nNo.', bold_normal_bg),
+            'B4': ('NHÂN VIÊN\nEMPLOYEE NAME', bold_normal_bg),
+            'C4': ('MỨC LƯƠNG HIỆN TẠI\nCURRENT WAGE', bold_normal_bg),
+            'D4': ('MỨC LƯƠNG TRƯỚC ĐÓ\nPREVIOUS WAGE', bold_normal_bg),
+            'E4': ('MỨC TĂNG(%)\nRAISE(%)', bold_normal_bg),
+            'F4': ('ÁP DỤNG TỪ THÁNG\nEFFECTIVE MONTHS', bold_normal_bg)
+        }
+        for coord, (value, style) in col_title.items():
             sheet.write(coord, value, style)
 
         # Loop through the list of partners and write data to the sheet for
         # partners with effective date in the current month
         row_index = 0
         for i, obj in enumerate(partners):
-            if obj.effective_date.month == current_month:
+            if obj.effective_date.month == current_month and obj.effective_date.year == current_year:
                 sheet.set_row(row_index+4, ROW_HEIGHT)
                 sheet.write(row_index+4, 0, row_index+1, font_border)
                 sheet.write(row_index+4, 1, obj.employee_id.name, font_border)

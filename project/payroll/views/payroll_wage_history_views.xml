@@ -1,105 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="payroll_wage_history_tree_view" model="ir.ui.view">
-        <field name="name">payroll.wage.history.tree.view</field>
-        <field name="model">payroll.wage.history</field>
-        <field name="arch" type="xml">
-            <tree string="Payroll Wage History" create="false">
-                <field name="name" />
-                <field name="employee_id" />
-                <field name="contract_id" />
-                <field name="department_id" />
-                <field name="job_id" />
-                <field name="create_uid" />
-                <field name="previous_wage" widget="monetary"
-                    options="{'currency_field': 'currency_id'}" />
-                <field name="current_wage" widget="monetary"
-                    options="{'currency_field': 'currency_id'}" />
-                <field name="difference" widget="monetary"
-                    options="{'currency_field': 'currency_id'}" />
-                <field name="currency_id" />
-                <field name="percentage" />
-                <field name="effective_date" />
-            </tree>
-        </field>
-    </record>
-
-    <record id="payroll_wage_history_view_form" model="ir.ui.view">
-        <field name="name">payroll.wage.history.view.form</field>
-        <field name="model">payroll.wage.history</field>
-        <field name="arch" type="xml">
-            <form string="Information" duplicate="false">
-                <sheet>
-                    <h1>
-                        <field name="employee_id" placeholder="Your Full Name" />
-                    </h1>
-                    <group colspan="2">
-                        <group string="Basic Information" col="2">
-                            <field name="name" />
-                            <field name="contract_id" />
-                            <field name="department_id" />
-                            <field name="job_id" />
-                            <field name="create_uid" />
-                        </group>
-
-                        <group string="Wage" col="2">
-                            <field name="effective_date" />
-                            <field name="currency_id" />
-                            <field name="previous_wage" />
-                            <field name="current_wage" />
-                            <field name="difference" />
-                            <field name="percentage" />
-                        </group>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="payroll_wage_history_view_search" model="ir.ui.view">
-        <field name="name">payroll.wage.history.view.search</field>
-        <field name="model">payroll.wage.history</field>
-        <field name="arch" type="xml">
-            <search>
-                <field name="name" />
-                <field name="employee_id" />
-                <field name="contract_id" />
-                <field name="department_id" />
-                <field name="job_id" />
-                <field name="create_uid" />
-                <field name="effective_date" />
-
-                <group string="Filters">
-                    <filter name="highest_raise" string="Highest Raise in 12 Month"
-                        context="{'highest_raise_in_12_month':True}" />
-                    <filter name="no_raise" string="No Raise in 12 month"
-                        context="{'no_raise_in_12_month': True}" />
-                    <filter name="my_responsibility" string="My Responsibility"
-                        domain="[('create_uid', '=', uid)]" />
-                </group>
-
-                <group string="Group By">
-                    <filter name="employee_group" string="Employee"
-                        context="{'group_by': 'employee_id'}" />
-                    <filter name="contract_group" string="Contract"
-                        context="{'group_by': 'contract_id'}" />
-                    <filter name="job_group" string="Job"
-                        context="{'group_by': 'job_id'}" />
-                    <filter name="department_group" string="Department"
-                        context="{'group_by': 'department_id'}" />
-                    <filter name="responsible_group" string="Responsible"
-                        context="{'group_by': 'create_uid'}" />
-                    <filter name="time_group" string="Time"
-                        context="{'group_by': 'effective_date'}" />
-                </group>
-            </search>
-        </field>
-    </record>
-
-    <record id="action_payroll_wage_history_view" model="ir.actions.act_window">
-        <field name="name">Payroll Wage History</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">payroll.wage.history</field>
-        <field name="view_mode">tree,form</field>
-    </record>
+	<record id="payroll_wage_history_tree_view" model="ir.ui.view">
+		<field name="name">payroll.wage.history.tree.view</field>
+		<field name="model">payroll.wage.history</field>
+		<field name="arch" type="xml">
+			<tree string="Payroll Wage History" create="false">
+				<field name="name" />
+				<field name="employee_id" />
+				<field name="contract_id" />
+				<field name="department_id" />
+				<field name="job_id" />
+				<field name="create_uid" />
+				<field name="previous_wage" />
+				<field name="current_wage" />
+				<field name="difference" />
+				<field name="currency_id" />
+				<field name="percentage" />
+				<field name="effective_date" />
+			</tree>
+		</field>
+	</record>
+	<record id="payroll_wage_history_view_form" model="ir.ui.view">
+		<field name="name">payroll.wage.history.view.form</field>
+		<field name="model">payroll.wage.history</field>
+		<field name="arch" type="xml">
+			<form string="Information" duplicate="false">
+				<sheet>
+					<h1>
+						<field name="employee_id" placeholder="Your Full Name" />
+					</h1>
+					<group colspan="2">
+						<group string="Basic Information" col="2">
+							<field name="name" />
+							<field name="contract_id" />
+							<field name="department_id" />
+							<field name="job_id" />
+							<field name="create_uid" />
+						</group>
+						<group string="Wage" col="2">
+							<field name="effective_date" />
+							<field name="currency_id" />
+							<field name="previous_wage" />
+							<field name="current_wage" />
+							<field name="difference" />
+							<field name="percentage" />
+						</group>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+	<record id="payroll_wage_history_view_search" model="ir.ui.view">
+		<field name="name">payroll.wage.history.view.search</field>
+		<field name="model">payroll.wage.history</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />
+				<field name="employee_id" />
+				<field name="contract_id" />
+				<field name="department_id" />
+				<field name="job_id" />
+				<field name="create_uid" />
+				<field name="effective_date" />
+				<group string="Filters">
+					<filter name="highest_raise" string="Highest Raise in 12 Month" context="{'highest_raise_in_12_month':True}" />
+					<filter name="no_raise" string="No Raise in 12 month" context="{'no_raise_in_12_month': True}" />
+					<filter name="my_responsibility" string="My Responsibility" domain="[('create_uid', '=', uid)]" />
+				</group>
+				<group string="Group By">
+					<filter name="employee_group" string="Employee" context="{'group_by': 'employee_id'}" />
+					<filter name="contract_group" string="Contract" context="{'group_by': 'contract_id'}" />
+					<filter name="job_group" string="Job" context="{'group_by': 'job_id'}" />
+					<filter name="department_group" string="Department" context="{'group_by': 'department_id'}" />
+					<filter name="responsible_group" string="Responsible" context="{'group_by': 'create_uid'}" />
+					<filter name="time_group" string="Time" context="{'group_by': 'effective_date'}" />
+				</group>
+			</search>
+		</field>
+	</record>
+	<record id="action_payroll_wage_history_view" model="ir.actions.act_window">
+		<field name="name">Payroll Wage History</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">payroll.wage.history</field>
+		<field name="view_mode">tree,form</field>
+	</record>
 </odoo>

@@ -14,9 +14,9 @@
                     <field name="payroll_ids">
                         <tree>
                             <field name="employee_id" />
-                            <field name="currency_id" />
                             <field name="previous_wage" />
                             <field name="current_wage" />
+                            <field name="currency_id" />
                             <field name="percentage" />
                             <field name="effective_date" />
                         </tree>

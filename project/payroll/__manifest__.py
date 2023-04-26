@@ -40,7 +40,8 @@
 
         # =============== REPORT =================
         'reports/report_payroll.xml',
-        'reports/report_employee_payroll.xml'
+        'reports/report_employee_payroll.xml',
+        'reports/py3o/template/report_py3o.xml'
 
 
     ],

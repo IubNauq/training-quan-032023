@@ -88,7 +88,9 @@ class PayrollWageHistory(models.Model):
                 [('contract_id', '=', value['contract_id'])])
 
             value['name'] = str(value['contract_id']) + "-" +\
-                str(count)+"-"+str(value['effective_date'])[:4]
+                str(count)+"-" + \
+                str(datetime.strptime(
+                    value['effective_date'], "%Y-%m-%d").year)
 
         return super(PayrollWageHistory, self).create(values)
 
@@ -107,7 +109,6 @@ class PayrollWageHistory(models.Model):
             results = self.env.cr.fetchall()
             record_ids = [result[0] for result in results]
             args.append(('id', 'in', record_ids))
-            # return self.browse(record_ids)
 
         elif self.env.context.get("no_raise_in_12_month"):
             self.env.cr.execute("""
@@ -123,7 +124,6 @@ class PayrollWageHistory(models.Model):
             results = self.env.cr.fetchall()
             record_ids = [result[0] for result in results]
             args.append(('id', 'in', record_ids))
-            # return self.browse(record_ids)
 
         return super(PayrollWageHistory, self).search(args, offset=offset,
                                                       limit=limit, order=order,

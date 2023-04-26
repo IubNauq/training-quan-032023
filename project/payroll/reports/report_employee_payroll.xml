@@ -1,144 +1,260 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <template id="report_payroll_wage_history">
-        <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="doc">
-                <t t-call="web.basic_layout">
-                    <link rel="stylesheet"
-                        href="/payroll/static/src/css/report.css" />
-                    <div class="page">
-                        <img class="intesco_icon" src="/payroll/static/img/intesco_icon.png"
-                            alt="Intesco Icon"></img>
-                        <div class="row">
-                            <div class="left">
-                                <p>Công ty TNHH Đầu tư Giải pháp Công nghệ Intesco<br />
-                                    <i>Intesco
-                                    Co.,LTD</i><br />
-                                    <i>Số/No:</i><br />
-                                    <i>
-                                        V/v:</i> Nâng lương<br />
-                                    <i>Subject: Increase the Salary</i></p>
-                            </div>
-                            <div class="right">
-                                <p>
-                                    <b>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</b><br />
-                                    <b>Độc lập - Tự
-                                        do - Hạnh phúc</b> <br />
-                                    <i>THE SOCIALIST REPUBLIC OF VIETNAM</i> <br />
-                                    <i>Independence
-                                    – Freedom – Happiness</i> <br /> ---- oOo ---- </p>
-
-                            </div>
-                        </div>
-                        <p
-                            class="sub_header"> - Căn cứ vào Bộ Luật Lao động của nước Cộng Hòa Xã
-                            Hội chủ nghĩa Việt Nam và các nghị định văn bản hướng dẫn thi hành Bộ
-                            Luật Lao Động; <br /><i>Pursuant
-                                to the Labor Code of the Social Republic of VietNam and the Decrees
-                            on
-                                implementing the Labor Code;</i> <br /> - Căn cứ vào đề nghị của ban
-                            giám đốc Intesco <br />
-                            
-                            <i>Pursuant to the proposal of
-                                Management
-                                Board of Intesco</i>
-
-                        </p>
-
-                        <div class="title">
-                            <p>
-                                <b>GIÁM ĐỐC INTESCO<br />
-                                <i>DIRECTOR OF INTESCO</i></b>
-                            </p>
-                        </div>
-                        <div
-                            class="sub_title">
-                            <p>
-                                <b>QUYẾT ĐỊNH<br />
-                                <i>DECIDES</i></b>
-                            </p>
-                        </div>
-
-                        <div
-                            class="content">
-                            <p>
-                                <b>
-                                    <u>Điều 1:</u>
-                                </b> Nâng lương
-                                của <span t-field="doc.employee_id" />, chức vụ: <span
-                                    t-field="doc.job_id" /> kể từ <span
-                                    t-field="doc.effective_date" /><br />
-
-                                <i>Article 1: To increase
-                                the salary of <span t-field="doc.employee_id" />, <span
-                                        t-field="doc.job_id" /> position, effectively from <span
-                                        t-field="doc.effective_date" /></i><br /><br />
-
-                                <b>
-                                    <u>Điều 2:</u>
-                                </b> Ông/Bà <span
-                                    t-field="doc.employee_id" /> sẽ nhận được <span
-                                    t-field="doc.current_wage" /> <span t-field="doc.currency_id" />
-                                /tháng<br />
-                                <i>Article 2: Mr./Ms. <span
-                                        t-field="doc.employee_id" /> will receive <span
-                                        t-field="doc.current_wage" /> <span t-field="doc.currency_id" />
-                                </i>
-                                /month<br /><br />
-
-                                <b>
-                                    <u>Điều 3:</u>
-                                </b> Phòng nhân
-                                sự, Phòng kế toán và ông/bà <span t-field="doc.employee_id" /> có
-                                trách nhiệm thi hành quyết định này. <i><br /> Article 3: Human
-                                Resources department, Accounting department, and Mr./Ms. <span
-                                        t-field="doc.employee_id" /> shall be responsible for
-                                implementing this decision. </i><br /><br />
-                            <b>
-                                    <u>Điều 4:</u>
-                                </b> Quyết định
-                                này có hiệu lực kể từ <span t-field="doc.effective_date" /> và là
-                                một phần không thể tách rời Hợp đồng lao động số <span
-                                    t-field="doc.contract_id" /> ký <span
-                                    t-field="doc.effective_date" />. Lương được quy định trong các
-                                hợp đồng trước đây và các quyết định trước (nếu có) sẽ chấm dứt hiệu
-                                lực từ <span
-                                    t-field="doc.effective_date" />. <br />
-                                    
-                                    <i>Article 4: This
-                                decision is valid from <span t-field="doc.effective_date" /></i> and
-                                is considered as integration of the Labor contract <span
-                                    t-field="doc.contract_id" /> signed on <span
-                                    t-field="doc.effective_date" />. The salary and allowances (if
-                                applicable) mentioned in the previous contracts and the last
-                                decisions (if applicable) won't be effective from <span
-                                    t-field="doc.effective_date" />.<br /><br />
-                            <b>
-                                    <u>Điều 5:</u>
-                                </b> Quyết định
-                                này được làm thành 2 bản có giá trị như nhau.<br /> <i>Article 5:
-                                    This decision
-                                    shall
-                                    be made in two copies, both having equal value.
-                                </i><br /><br />
-                            </p>
-                        </div>
-
-                        <div class="row">
-                            <div class="left"> Nơi nhận / <i>Receiver</i><br /><br /> - Ông/Bà (<i>
-                                Mr./Ms.</i> ) <span t-field="doc.employee_id" /><br /><br /> - Lưu / <i>For
-                                Archive</i>
-                            </div>
-                            <div class="right">
-                                <p> GIÁM ĐỐC / <i>DIRECTOR</i><br /><br /> Đã ký (<i>signed</i>) </p>
-                            </div>
-                        </div>
-                    </div>
-
-                </t>
-            </t>
-        </t>
-    </template>
-
+	<template id="report_payroll_wage_history">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="doc">
+				<t t-call="web.basic_layout">
+					<link rel="stylesheet" href="/payroll/static/src/css/report.css" />
+					<div class="page">
+						<img class="intesco_icon" src="/payroll/static/img/intesco_icon.png" alt="Intesco Icon">
+						</img>
+						<div class="row">
+							<div class="left">
+								<p>
+									Công ty TNHH Đầu tư Giải pháp Công nghệ Intesco
+									<br />
+									<i>
+										Intesco
+										Co.,LTD
+									</i>
+									<br />
+									<i>
+										Số/No:
+									</i>
+									<br />
+									<i>
+										V/v:
+									</i>
+									Nâng
+									lương
+									<br />
+									<i>
+										Subject: Increase the Salary
+									</i>
+								</p>
+							</div>
+							<div class="right">
+								<p>
+									<b>
+										CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+									</b>
+									<br />
+									<b>
+										Độc lập - Tự
+										do - Hạnh phúc
+									</b>
+									<br />
+									<i>
+										THE SOCIALIST REPUBLIC OF VIETNAM
+									</i>
+									<br />
+									<i>
+										Independence
+										– Freedom – Happiness
+									</i>
+									<br />
+									---- oOo ----
+								</p>
+							</div>
+						</div>
+						<p class="sub_header">
+							- Căn cứ vào Bộ Luật Lao động của nước Cộng Hòa Xã
+							Hội chủ nghĩa Việt Nam và các nghị định văn bản hướng dẫn thi hành Bộ
+							Luật Lao Động;
+							<br />
+							<i>
+								Pursuant
+								to the Labor Code of the Social Republic of VietNam and the Decrees
+								on
+								implementing the Labor Code;
+							</i>
+							<br />
+							- Căn cứ vào đề nghị của ban giám đốc Intesco
+							<br />
+							<i>
+								Pursuant to the proposal of
+								Management
+								Board of Intesco
+							</i>
+						</p>
+						<div class="title">
+							<p>
+								<b>
+									GIÁM ĐỐC INTESCO
+									<br />
+									<i>
+										DIRECTOR OF INTESCO
+									</i>
+								</b>
+							</p>
+						</div>
+						<div class="sub_title">
+							<p>
+								<b>
+									QUYẾT ĐỊNH
+									<br />
+									<i>
+										DECIDES
+									</i>
+								</b>
+							</p>
+						</div>
+						<div class="content">
+							<p>
+								<b>
+									<u>
+										Điều 1:
+									</u>
+								</b>
+								Nâng lương của
+								<span t-field="doc.employee_id" />
+								, chức vụ:
+								<span t-field="doc.job_id" />
+								kể từ
+								<span t-field="doc.effective_date" />
+								<br />
+								<i>
+									Article 1: To increase the salary of
+									<span t-field="doc.employee_id" />
+									,
+									<span t-field="doc.job_id" />
+									position, effectively from
+									<span t-field="doc.effective_date" />
+								</i>
+								<br />
+								<br />
+								<b>
+									<u>
+										Điều 2:
+									</u>
+								</b>
+								Ông/Bà
+								<span t-field="doc.employee_id" />
+								sẽ nhận được
+								<span t-field="doc.current_wage" />
+								<span t-field="doc.currency_id" />
+								/tháng
+								<br />
+								<i>
+									Article 2: Mr./Ms.
+									<span t-field="doc.employee_id" />
+									will receive
+									<span t-field="doc.current_wage" />
+									<span t-field="doc.currency_id" />
+								</i>
+								/month
+								<br />
+								<br />
+								<b>
+									<u>
+										Điều 3:
+									</u>
+								</b>
+								Phòng nhân sự, Phòng kế toán và ông/bà
+								<span t-field="doc.employee_id" />
+								có trách nhiệm thi hành quyết định
+								này.
+								<i>
+									<br />
+									Article 3: Human Resources department, Accounting
+									department, and Mr./Ms.
+									<span t-field="doc.employee_id" />
+									shall be
+									responsible for implementing this decision.
+								</i>
+								<br />
+								<br />
+								<b>
+									<u>
+										Điều 4:
+									</u>
+								</b>
+								Quyết định này có hiệu lực kể từ
+								<span t-field="doc.effective_date" />
+								và là một phần không thể tách rời Hợp đồng lao động số
+								<span t-field="doc.contract_id" />
+								ký
+								<span t-field="doc.effective_date" />
+								. Lương được quy định trong các
+								hợp đồng trước đây và các quyết định trước (nếu có) sẽ chấm dứt hiệu
+								lực từ
+								<span t-field="doc.effective_date" />
+								.
+								<br />
+								<i>
+									Article 4:
+									This decision is valid from
+									<span t-field="doc.effective_date" />
+								</i>
+								and is considered as integration of the Labor contract
+								<span t-field="doc.contract_id" />
+								signed on
+								<span t-field="doc.effective_date" />
+								. The salary and allowances (if
+								applicable) mentioned in the previous contracts and the last
+								decisions (if applicable) won't be effective from
+								<span t-field="doc.effective_date" />
+								.
+								<br />
+								<br />
+								<b>
+									<u>
+										Điều 5:
+									</u>
+								</b>
+								Quyết định này được làm thành 2 bản có giá trị như nhau.
+								<br />
+								<i>
+									Article 5:
+									This decision
+									shall
+									be made in two copies, both having equal value.
+								</i>
+								<br />
+								<br />
+							</p>
+						</div>
+						<div class="row">
+							<div class="left">
+								Nơi nhận /
+								<i>
+									Receiver
+								</i>
+								<br />
+								<br />
+								- Ông/Bà (
+								<i>
+									Mr./Ms.
+								</i>
+								)
+								<span t-field="doc.employee_id" />
+								<br />
+								<br />
+								- Lưu /
+								<i>
+									For
+									Archive
+								</i>
+							</div>
+							<div class="right">
+								<p>
+									GIÁM ĐỐC /
+									<i>
+										DIRECTOR
+									</i>
+									<br />
+									<br />
+									Đã ký (
+									<i>
+										signed
+									</i>
+									)
+								</p>
+							</div>
+						</div>
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
 </odoo>

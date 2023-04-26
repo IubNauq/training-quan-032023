@@ -1,6 +1,7 @@
 from odoo import fields, models, api
 import xlsxwriter
 from datetime import datetime
+import calendar
 
 
 class WageSummaryWizard(models.TransientModel):
@@ -73,27 +74,28 @@ class WageSummaryWizard(models.TransientModel):
 
         # SUBTITLE
         FIRST_DAY = '01/'
-        LAST_DAY = '31/'
-        subtitle = [
-            ('B2', 'Từ ngày'),
-            ('C2', f'{FIRST_DAY}{current_month}/{current_year}'),
-            ('D2', 'Đến ngày'),
-            ('E2', f'{LAST_DAY}{current_month}/{current_year}'),
-            ('A4', 'STT\nNo.')
-        ]
-        for coord, value in subtitle:
+        LAST_DAY = str(calendar.monthrange(current_year, current_month)[1])+'/'
+
+        subtitle = {
+            'B2': ('Từ ngày'),
+            'C2': (f'{FIRST_DAY}{current_month}/{current_year}'),
+            'D2': ('Đến ngày'),
+            'E2': (f'{LAST_DAY}{current_month}/{current_year}'),
+            'A4': ('STT\nNo.')
+        }
+        for coord, (value) in subtitle.items():
             sheet.write(coord, value, font)
 
         # COLUMN TITLE
-        col_title = [
-            ('A4', 'STT\nNo.', bold_normal_bg),
-            ('B4', 'NHÂN VIÊN\nEMPLOYEE NAME', bold_normal_bg),
-            ('C4', 'MỨC LƯƠNG HIỆN TẠI\nCURRENT WAGE', bold_normal_bg),
-            ('D4', 'MỨC LƯƠNG TRƯỚC ĐÓ\nPREVIOUS WAGE', bold_normal_bg),
-            ('E4', 'MỨC TĂNG(%)\nRAISE(%)', bold_normal_bg),
-            ('F4', 'ÁP DỤNG TỪ THÁNG\nEFFECTIVE MONTHS', bold_normal_bg)
-        ]
-        for coord, value, style in col_title:
+        col_title = {
+            'A4': ('STT\nNo.', bold_normal_bg),
+            'B4': ('NHÂN VIÊN\nEMPLOYEE NAME', bold_normal_bg),
+            'C4': ('MỨC LƯƠNG HIỆN TẠI\nCURRENT WAGE', bold_normal_bg),
+            'D4': ('MỨC LƯƠNG TRƯỚC ĐÓ\nPREVIOUS WAGE', bold_normal_bg),
+            'E4': ('MỨC TĂNG(%)\nRAISE(%)', bold_normal_bg),
+            'F4': ('ÁP DỤNG TỪ THÁNG\nEFFECTIVE MONTHS', bold_normal_bg)
+        }
+        for coord, (value, style) in col_title.items():
             sheet.write(coord, value, style)
 
         # Loop through the list of partners and write data to the sheet for
@@ -128,8 +130,9 @@ class WageSummaryWizard(models.TransientModel):
         if self.job_id:
             domain.append(('job_id', '=', self.job_id.id))
 
-        self.payroll_ids = None
+        self.payroll_ids = [(5, 0, 0)]
         self.payroll_ids = payroll_obj.search(domain).ids
+        # print(payroll_obj.search(domain).ids)
 
         return {
             'name': 'Selected',
